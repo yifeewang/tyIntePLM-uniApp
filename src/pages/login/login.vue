@@ -3,7 +3,7 @@ import { computed, reactive, ref } from 'vue';
 import { useInit } from '@/hooks/useInit';
 import { useTitle } from '@/hooks/useTitle';
 import { forward } from '@/utils/router';
-import apiLogin from '@/api/apiLogin';
+import Service from '@/api/index';
 
 function goFirstPage() {
   forward('index');
@@ -101,7 +101,7 @@ function submitForm() {
         name: res.account,
         password: res.password
       };
-      const response = await apiLogin.goLogin(params);
+      const response = await Service.goLogin(params);
       console.log(111, response);
       console.log('表单数据信息：', res);
       response && goFirstPage();
@@ -114,7 +114,9 @@ function submitForm() {
 
 <template>
   <view class="login-wraper">
-    <view class="login-language">
+    <view
+      class="flex absolute right-15 top-54 items-center text-center lh-22 fs-15 c-[#646a73]"
+    >
       <uni-icons type="contact" size="30"></uni-icons>
       <view>{{ curLang }}</view>
       <uni-icons type="bottom" size="30"></uni-icons>
@@ -178,18 +180,18 @@ function submitForm() {
   height: 100vh;
   background: url('@/static/login_bg.png') no-repeat;
   background-size: 100% 878rpx;
-  .login-language {
-    display: flex;
-    position: absolute;
-    right: 30rpx;
-    top: 108rpx;
-    align-items: center;
-    line-height: 44rpx;
-    text-align: left;
-    font-weight: 400;
-    font-size: 30rpx;
-    color: #646a73;
-  }
+  //   .login-language {
+  //     display: flex;
+  //     position: absolute;
+  //     right: 30rpx;
+  //     top: 108rpx;
+  //     align-items: center;
+  //     line-height: 44rpx;
+  //     text-align: left;
+  //     font-weight: 400;
+  //     font-size: 30rpx;
+  //     color: #646a73;
+  //   }
   .login-language-real {
     display: flex;
     position: absolute;

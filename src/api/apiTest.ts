@@ -1,9 +1,22 @@
-import http from '@/utils/request';
-
+import http from '@/http/request';
+const { getInstance } = http;
 const apiTest = {
-  getTest: (params: GetTest.params) => http.get<GetTest.data>('/test', params),
-  postTest: (params: PostTest.params) =>
-    http.post<PostTest.data>('/test', params)
+  getTest(data = {}, options = {}) {
+    return getInstance.http({
+      url: '/test',
+      method: 'GET',
+      data,
+      ...options
+    });
+  },
+  postTest(data = {}, options = {}) {
+    return getInstance.http({
+      url: '/test',
+      method: 'POST',
+      data,
+      ...options
+    });
+  }
 };
 
 export default apiTest;

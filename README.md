@@ -1,20 +1,17 @@
-# uni-app + vue3.x  项目工程化搭建
+# uni-app + vue3.x + vite  项目工程化搭建
 
 ## 简介
 
-`uni-app + vue3.x` 项目工程化搭建，集成 `ESLint`、`Prettier`、`Stylelint`、`husky`、`lint-staged` 、`commitlint`等，同时实现了 pinia 在 uniapp 中的持久化插件[pinia-plugin-persist-uni](https://github.com/Allen-1998/pinia-plugin-persist-uni)以及 storeToRefs 增强插件[pinia-auto-refs](https://github.com/Allen-1998/pinia-auto-refs)。
+`uni-app + vue3.x + vite` 项目工程化搭建，集成 `ESLint`、`Prettier`、`Stylelint`、`husky`、`lint-staged` 、`commitlint`等代码规范工具，集成了原子化css引擎 `unocss`, 并且使用 `pinia` 替代 `vuex`, 同时集成了 pinia 在 uniapp 中的持久化插件[pinia-plugin-persist-uni](https://github.com/Allen-1998/pinia-plugin-persist-uni)以及 storeToRefs 增强插件[pinia-auto-refs](https://github.com/Allen-1998/pinia-auto-refs)。
 
 [相关文章 - pinia-plugin-persist-uni 在 uni-app 中持久化存储 pinia](https://juejin.cn/post/7081275565008748552)
 
 [相关文章 - 受够了手动 storeToRefs？来试试这个 vite 插件吧](https://juejin.cn/post/7097893752030625828)
 
-[仓库地址 - uni-vue3-vite-ts-pinia](https://github.com/Allen-1998/uni-vue3-vite-ts-pinia)
-
-欢迎使用和点亮小星星。
 
 ## 所用技术栈
 
-- 依赖管理：node v16.x, 如果你已经使用 nvm，可以参考 [Github: nvm](https://github.com/nvm-sh/nvm#deeper-shell-integration) 来实现 node 版本的自动切换
+- 依赖管理：node v16.x+, 如果你已经使用 nvm，可以参考 [Github: nvm](https://github.com/nvm-sh/nvm#deeper-shell-integration) 来实现 node 版本的自动切换
 - 小程序框架： [uni-app](https://uniapp.dcloud.io/)
 - 构建工具： [Vite](https://vitejs.dev/)
 - 前端框架： [Vue3.x](https://v3.cn.vuejs.org/)
@@ -28,6 +25,7 @@
   - [lint-staged](https://www.npmjs.com/package/lint-staged)
   - [commitlint](https://commitlint.js.org/#/)
 - css 预处理器： [scss](https://sass-lang.com/)
+- css 原子化引擎： [unocss](https://unocss.dev/)
 - 状态管理工具：[pinia](https://pinia.vuejs.org/)
 - pinia 数据持久化插件：[pinia-plugin-persist-uni](https://allen-1998.github.io/pinia-plugin-persist-uni/)
 - vite 插件：

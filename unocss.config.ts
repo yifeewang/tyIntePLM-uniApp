@@ -10,7 +10,10 @@ const sizeMapping: Record<string, string> = {
 function getSizeRules(Mapping: Record<string, string>): Rule<{}>[] {
   return Object.keys(Mapping).map((key) => {
     const value = Mapping[key];
-    return [new RegExp(`^${key}-(\\d+)$`), ([, d]) => ({ [value]: `${d}rpx` })];
+    return [
+      new RegExp(`^${key}-(\\d+)$`),
+      ([, d]) => ({ [value]: `${d * 2}rpx` })
+    ];
   });
 }
 
@@ -19,7 +22,7 @@ export default defineConfig({
     presetAttributify(),
     presetUno(),
     presetRemToRpx({
-      baseFontSize: 100
+      baseFontSize: 8 // 0.25rem 2rpx 1px
     }) as Preset
   ],
   theme: {

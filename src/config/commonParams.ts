@@ -18,3 +18,5 @@ export function getCommonParams() {
 export function setCommonParams(params: Object) {
   Object.assign(commonParams, params);
 }
+
+export const SUCESS_CODE = 10000;

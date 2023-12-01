@@ -1,9 +1,14 @@
-import http from '@/utils/request';
-
+import http from '@/http/request';
+const { getInstance } = http;
 const apiLogin = {
-  //   goLogin: (params: any) => http.post<PostTest.data>('/todo/list', params)
-  goLogin: (params: any) =>
-    http.post<PostTest.data>('/rest/userService/v1/user/userLogin', params)
+  goLogin(data = {}, options = {}) {
+    return getInstance.http({
+      url: '/rest/userService/v1/user/userLogin',
+      method: 'POST',
+      data,
+      ...options
+    });
+  }
 };
 
 export default apiLogin;

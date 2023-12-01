@@ -9,6 +9,8 @@
         "trailingComma": "none"
       }
     ],
+    "promise/param-names": "off",
+    "@typescript-eslint/no-this-alias": "off",
     "antfu/if-newline": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/ban-ts-ignore": "off",

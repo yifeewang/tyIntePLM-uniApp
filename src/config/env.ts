@@ -6,16 +6,16 @@ const envMap = {
     apiBaseUrl: 'http://120.46.143.122:7002'
   },
   beta: {
-    baseUrl: 'http://10.8.1.37:7002',
-    apiBaseUrl: 'http://10.8.1.37:7002'
+    baseUrl: 'http://120.46.143.122:7002',
+    apiBaseUrl: 'http://120.46.143.122:7002'
   },
   prod: {
-    baseUrl: 'http://10.8.1.37:7002',
-    apiBaseUrl: 'http://10.8.1.37:7002'
+    baseUrl: 'http://120.46.143.122:7002',
+    apiBaseUrl: 'http://120.46.143.122:7002'
   },
   local: {
-    baseUrl: 'http://10.8.1.37:7002',
-    apiBaseUrl: 'http://10.8.1.37:7002'
+    baseUrl: 'http://120.46.143.122:7002',
+    apiBaseUrl: 'http://120.46.143.122:7002'
   }
 };
 

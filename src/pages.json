@@ -1,0 +1,96 @@
+{
+  "pages": [
+    {
+      "name": "login",
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "登录页",
+        "app-plus": {
+            "titleNView": false //禁用原生导航栏  
+        }
+      }
+    },
+    {
+      "name": "index",
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "首页",
+        "app-plus": {
+            "titleNView": false //禁用原生导航栏  
+        }
+      }
+    },
+    {
+      "name": "profile",
+      "path": "pages/profile/profile",
+      "style": {
+        "navigationBarTitleText": "个人",
+        "app-plus": {
+            "titleNView": false //禁用原生导航栏  
+        }
+      }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "pages/test",
+      "pages": [
+        {
+          "name": "test",
+          "path": "test",
+          "style": {
+            "navigationBarTitleText": "测试",
+            "app-plus": {
+                "titleNView": {
+                    // "type": "transparent",
+                    "searchInput":{  //搜索框
+                        "placeholder": "请输入订单关键字",
+                        "borderRadius":"50rpx",
+                        "backgroundColor": "#f1f1f1",
+                        "align":"left",  //对齐方式
+                        "width":"auto"   //这个一定要加 
+                    },
+                    "buttons": [{
+                        "type": "home",
+                        // "text": "订单信息",
+                        "float":"right",   //控制标题显示的左右位置,"float":"left"就在搜索框右边了
+                        "fontSize":"28px",
+                        "fontWeight":"bold",
+                        "width":"auto"   //这个一定要加
+                    }]
+                }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "height": "50px",
+    "fontSize": "10px",
+    "iconWidth": "24px",
+    "spacing": "3px",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/logo1.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "iconPath": "static/logo2.png",
+        "text": "个人"
+      }
+    ]
+  }
+}

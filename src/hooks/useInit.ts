@@ -1,6 +1,5 @@
-import { parseUrl } from '@/utils/shared';
-
-export function useInit() {
+import tool from '@/utils/index';
+export default function useInit() {
   onShow(() => {
     console.log('Page Show');
   });
@@ -15,7 +14,7 @@ export function useInit() {
     name: pageName,
     path: pagePath,
     query: pageQuery
-  } = parseUrl(fullPath);
+  } = tool.qs.parseUrl(fullPath);
 
   return {
     pageName,

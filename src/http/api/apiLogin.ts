@@ -1,5 +1,4 @@
-import http from '@/http/request';
-const { getInstance } = http;
+import { getInstance } from '@/http/request';
 const apiLogin = {
   goLogin(data = {}, options = {}) {
     return getInstance.http({

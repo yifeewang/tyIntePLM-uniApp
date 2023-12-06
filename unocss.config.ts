@@ -3,17 +3,39 @@ import { defineConfig, presetAttributify, presetUno } from 'unocss';
 
 import presetRemToRpx from './preset-rem-to-rpx';
 
-const sizeMapping: Record<string, string> = {
-  fs: 'font-size'
-};
+interface mapValue {
+  value: string;
+  rule: (key: string, value: string) => any;
+}
 
-function getSizeRules(Mapping: Record<string, string>): Rule<{}>[] {
-  return Object.keys(Mapping).map((key) => {
-    const value = Mapping[key];
-    return [
+const ruleMapping: Record<string, mapValue> = {
+  fs: {
+    value: 'font-size',
+    rule: (key, value) => [
       new RegExp(`^${key}-(\\d+)$`),
       ([, d]) => ({ [value]: `${d * 2}rpx` })
-    ];
+    ]
+  },
+  bg: {
+    value: 'background-image',
+    rule: (key, value) => [
+      new RegExp(`^${key}-\\['(.+)'\\]$`),
+      ([, d]) => ({ [value]: `url(${d})` })
+    ]
+  },
+  bs: {
+    value: 'background-size',
+    rule: (key, value) => [
+      new RegExp(`^${key}-\\[(.+)\\]$`),
+      ([, d]) => ({ [value]: d.replace(',', ' ') })
+    ]
+  }
+};
+// 转换 ruleMapping
+function getMapRules(Mapping: Record<string, mapValue>): Rule<{}>[] {
+  return Object.keys(Mapping).map((key) => {
+    const obj = Mapping[key];
+    return obj.rule(key, obj.value);
   });
 }
 
@@ -28,5 +50,5 @@ export default defineConfig({
   theme: {
     preflightRoot: ['page,::before,::after']
   },
-  rules: getSizeRules(sizeMapping)
+  rules: getMapRules(ruleMapping)
 });

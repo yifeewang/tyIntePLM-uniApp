@@ -75,3 +75,4 @@ function onScrollToLower() {
 </template>
 
 <style lang="scss" scoped></style>
+@/utils/router-tool

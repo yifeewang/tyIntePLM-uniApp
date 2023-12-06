@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 import { computed, reactive, ref } from 'vue';
-import { useInit } from '@/hooks/useInit';
-import { useTitle } from '@/hooks/useTitle';
-import { forward } from '@/utils/router';
-import Service from '@/api/index';
+const app: any = getApp();
+const { useInit, useTitle } = app.globalData.$hooks;
+const { turnPage } = app.globalData.$tools;
 
 function goFirstPage() {
-  forward('index');
+  turnPage('demo');
 }
 
 const formData = reactive({
@@ -101,7 +100,7 @@ function submitForm() {
         name: res.account,
         password: res.password
       };
-      const response = await Service.goLogin(params);
+      const response = await app.globalData.$Services.goLogin(params);
       console.log(111, response);
       console.log('表单数据信息：', res);
       response && goFirstPage();
@@ -113,7 +112,9 @@ function submitForm() {
 </script>
 
 <template>
-  <view class="login-wraper">
+  <view
+    class="login-wraper relative overflow-hidden w-100vw h-100vh bg-['@/static/login_bg.png'] bg-no-repeat bs-[100%,878rpx]"
+  >
     <view
       class="flex absolute right-15 top-54 items-center text-center lh-22 fs-15 c-[#646a73]"
     >
@@ -174,12 +175,6 @@ function submitForm() {
 
 <style lang="scss" scoped>
 .login-wraper {
-  overflow: hidden;
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background: url('@/static/login_bg.png') no-repeat;
-  background-size: 100% 878rpx;
   //   .login-language {
   //     display: flex;
   //     position: absolute;
@@ -277,3 +272,4 @@ function submitForm() {
   }
 }
 </style>
+@/utils/router-tool

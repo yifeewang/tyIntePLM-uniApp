@@ -1,47 +1,46 @@
 <script setup lang="ts">
-import { useTitle } from '@/hooks/useTitle';
-import { forward } from '@/utils/router';
+import { ref } from 'vue';
+const app: any = getApp();
+const { useTitle } = app.globalData.$hooks;
+const { turnPage, formatDate } = app.globalData.$tools;
 
+const value1 = ref(0);
+const click1 = (item) => {
+  console.log('click1', item);
+  value1.value = item;
+};
+const change1 = (item) => {
+  console.log('change1', item);
+};
 const { title, changeTitle } = useTitle();
 function goTest() {
-  forward('test', {
+  turnPage('test', {
     a: 1
   });
 }
 </script>
 
 <template>
-  <view class="content">
-    <image class="logo" src="/static/login_logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
+  <view class="flex flex-col justify-center items-center">
+    <image
+      class="ml-auto mr-auto mt-100 mb-25 w-100 h-100"
+      src="/static/login_logo.png"
+    />
+    <view class="flex justify-center">
+      <text class="fs-18 title">{{
+        formatDate(new Date(), 'yyyy年mm月dd日')
+      }}</text>
     </view>
-    <view @click="changeTitle">changeTitle</view>
-    <view @click="goTest">测试页</view>
+    <view @click="changeTitle">{{ title }}</view>
+    <view class="p-20 w-100% box-border" @click="goTest">
+      <u-button type="warning" text="跳转"></u-button>
+    </view>
   </view>
 </template>
 
 <style scoped lang="scss">
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.logo {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 200rpx;
-  margin-bottom: 50rpx;
-  width: 200rpx;
-  height: 200rpx;
-}
-.text-area {
-  display: flex;
-  justify-content: center;
-}
 .title {
-  font-size: 36rpx;
-  color: #8f8f94;
+  color: $uni-color-error;
 }
 </style>
+@/utils/router-tool

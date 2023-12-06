@@ -1,5 +1,4 @@
-import http from '@/http/request';
-const { getInstance } = http;
+import { getInstance } from '@/http/request';
 const apiTest = {
   getTest(data = {}, options = {}) {
     return getInstance.http({

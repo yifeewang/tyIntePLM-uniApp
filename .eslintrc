@@ -10,6 +10,7 @@
       }
     ],
     "promise/param-names": "off",
+    "prefer-rest-params": "off",
     "@typescript-eslint/no-this-alias": "off",
     "antfu/if-newline": "off",
     "@typescript-eslint/ban-ts-comment": "off",

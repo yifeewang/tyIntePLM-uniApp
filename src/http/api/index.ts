@@ -1,5 +1,4 @@
-import http from '@/http/request';
-const { getInstance, lock, unlock } = http;
+import { lock, unlock } from '@/http/request';
 // 将api下的文件自动导入
 const ApiModules: any = import.meta.globEager('./api*.ts') || {};
 const modules = Object.keys(ApiModules).reduce((prevModules, curPathKey) => {

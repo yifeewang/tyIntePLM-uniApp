@@ -69,191 +69,189 @@ class AjaxUtil {
   static create(option) {
     return new AjaxUtil(option);
   }
-}
-// 遍历队列，依次发出请求
-AjaxUtil.prototype.walk = function () {
-  if (this.locking) return false;
-  if (this.count < this.concurrency) {
-    const left = this.concurrency - this.count;
-    let min = Math.min(left, this.queue.length + this.subQueue.length);
-    while (min--) {
-      // console.log('出队')
-      let request;
-      if (this.queue.length) {
-        request = this.queue.shift();
-      } else {
-        request = this.subQueue.shift();
-      }
-      this.count++;
-      this.request(request.options)
-        .then((res) => {
-          request.success(res);
-        })
-        .catch((err) => {
-          request.fail(err);
-        });
-    }
-  }
-};
-// 收到请求，放到队列
-AjaxUtil.prototype.http = function (options: any = {}) {
-  // const page = getCurrentPages().pop()
-  // let pageUrl = ''
-  // if (page) {
-  // pageUrl = page.route
-  // }
-  if (options.data == null) {
-    options.data = {};
-  }
-  if (options.headers == null) {
-    options.headers = {};
-  }
-  return new Promise((resolve, reject) => {
-    // console.log('入队')
-    let inQueue = this.queue;
-    // console.log('入队')
-    if (options.subQueue) {
-      inQueue = this.subQueue;
-    }
-    // options.route = pageUrl
-    inQueue.push({
-      options,
-      success: resolve,
-      fail: reject
-    });
-    this.walk();
-  });
-};
-AjaxUtil.prototype.lock = function () {
-  console.log(`lock request: ${new Date()}`);
-  this.locking = true;
-};
-AjaxUtil.prototype.unlock = function () {
-  console.log(`unlock request: ${new Date()}`);
-  this.locking = false;
-  this.walk();
-};
-// 封装请求
-AjaxUtil.prototype.request = function (options) {
-  const self = this;
-  options = {
-    method: 'GET',
-    data: {},
-    headers: {
-      'content-type': 'application/json; charset=utf-8'
-    },
-    baseURL: self.baseURL,
-    timeout: self.timeout,
-    ...options
-  };
-  return new Promise((resolve, reject) => {
-    if (uni && uni.request) {
-      new Promise((resolve2, reject2) => {
-        if (self.requestConfig.cb) {
-          getResolve(self.requestConfig.cb(options))
-            .then((obj) => {
-              resolve2(obj);
-            })
-            .catch((err) => {
-              reject2(err);
-            });
+
+  walk() {
+    if (this.locking) return false;
+    if (this.count < this.concurrency) {
+      const left = this.concurrency - this.count;
+      let min = Math.min(left, this.queue.length + this.subQueue.length);
+      while (min--) {
+        // console.log('出队')
+        let request;
+        if (this.queue.length) {
+          request = this.queue.shift();
         } else {
-          resolve2(options);
+          request = this.subQueue.shift();
         }
-      })
-        .then((options: any) => {
-          const { url, baseURL, ...params } = options;
-          uni.request({
-            url: baseURL + url,
-            ...params,
-            success: (res) => {
-              new Promise((resolve3, reject3) => {
-                if (self.responseConfig.cb) {
-                  getResolve(self.responseConfig.cb(res.data, options))
-                    .then((obj) => {
-                      resolve3(obj);
-                    })
-                    .catch((err) => {
-                      reject3(err);
-                    });
-                } else {
-                  resolve3(res.data);
-                }
+        this.count++;
+        this.request(request.options)
+          .then((res) => {
+            request.success(res);
+          })
+          .catch((err) => {
+            request.fail(err);
+          });
+      }
+    }
+  }
+
+  http(options: any = {}) {
+    if (options.data == null) {
+      options.data = {};
+    }
+    if (options.headers == null) {
+      options.headers = {};
+    }
+    return new Promise((resolve, reject) => {
+      // console.log('入队')
+      let inQueue = this.queue;
+      // console.log('入队')
+      if (options.subQueue) {
+        inQueue = this.subQueue;
+      }
+      inQueue.push({
+        options,
+        success: resolve,
+        fail: reject
+      });
+      this.walk();
+    });
+  }
+
+  lock() {
+    console.log(`lock request: ${new Date()}`);
+    this.locking = true;
+  }
+
+  unlock() {
+    console.log(`unlock request: ${new Date()}`);
+    this.locking = false;
+    this.walk();
+  }
+
+  request(options) {
+    const self = this;
+    options = {
+      method: 'GET',
+      data: {},
+      headers: {
+        'content-type': 'application/json; charset=utf-8'
+      },
+      baseURL: self.baseURL,
+      timeout: self.timeout,
+      ...options
+    };
+    return new Promise((resolve, reject) => {
+      if (uni && uni.request) {
+        new Promise((resolve2, reject2) => {
+          if (self.requestConfig.cb) {
+            getResolve(self.requestConfig.cb(options))
+              .then((obj) => {
+                resolve2(obj);
               })
-                .then((data) => {
-                  self.count--;
-                  resolve(data);
-                  self.walk();
-                })
-                .catch((err) => {
-                  if (self.responseConfig.errCb) {
-                    getResolve(self.responseConfig.errCb(err, options))
+              .catch((err) => {
+                reject2(err);
+              });
+          } else {
+            resolve2(options);
+          }
+        })
+          .then((options: any) => {
+            const { url, baseURL, ...params } = options;
+            uni.request({
+              url: baseURL + url,
+              ...params,
+              success: (res) => {
+                new Promise((resolve3, reject3) => {
+                  if (self.responseConfig.cb) {
+                    getResolve(self.responseConfig.cb(res.data, options))
                       .then((obj) => {
-                        self.count--;
-                        resolve(obj);
-                        self.walk();
+                        resolve3(obj);
                       })
                       .catch((err) => {
-                        self.count--;
-                        reject(err);
-                        self.walk();
+                        reject3(err);
                       });
                   } else {
-                    self.count--;
-                    reject(err);
-                    self.walk();
+                    resolve3(res.data);
                   }
-                });
-            },
-            fail: (err) => {
-              if (self.responseConfig.errCb) {
-                getResolve(self.responseConfig.errCb(err, options))
-                  .then((obj) => {
+                })
+                  .then((data) => {
                     self.count--;
-                    resolve(obj);
+                    resolve(data);
                     self.walk();
                   })
                   .catch((err) => {
-                    self.count--;
-                    reject(err);
-                    self.walk();
+                    if (self.responseConfig.errCb) {
+                      getResolve(self.responseConfig.errCb(err, options))
+                        .then((obj) => {
+                          self.count--;
+                          resolve(obj);
+                          self.walk();
+                        })
+                        .catch((err) => {
+                          self.count--;
+                          reject(err);
+                          self.walk();
+                        });
+                    } else {
+                      self.count--;
+                      reject(err);
+                      self.walk();
+                    }
                   });
-              } else {
-                self.count--;
-                reject(err);
-                self.walk();
+              },
+              fail: (err) => {
+                if (self.responseConfig.errCb) {
+                  getResolve(self.responseConfig.errCb(err, options))
+                    .then((obj) => {
+                      self.count--;
+                      resolve(obj);
+                      self.walk();
+                    })
+                    .catch((err) => {
+                      self.count--;
+                      reject(err);
+                      self.walk();
+                    });
+                } else {
+                  self.count--;
+                  reject(err);
+                  self.walk();
+                }
               }
+            });
+          })
+          .catch((err) => {
+            if (self.requestConfig.errCb) {
+              getResolve(self.requestConfig.errCb(err, options))
+                .then((obj) => {
+                  self.count--;
+                  self.walk();
+                  resolve(obj);
+                })
+                .catch((err) => {
+                  self.count--;
+                  self.walk();
+                  reject(err);
+                });
+            } else {
+              self.count--;
+              self.walk();
+              reject(err);
             }
           });
-        })
-        .catch((err) => {
-          if (self.requestConfig.errCb) {
-            getResolve(self.requestConfig.errCb(err, options))
-              .then((obj) => {
-                self.count--;
-                self.walk();
-                resolve(obj);
-              })
-              .catch((err) => {
-                self.count--;
-                self.walk();
-                reject(err);
-              });
-          } else {
-            self.count--;
-            self.walk();
-            reject(err);
-          }
-        });
-    }
-  });
-};
-AjaxUtil.prototype.get = function (options) {
-  options.method = 'GET';
-  return this.http(options);
-};
-AjaxUtil.prototype.post = function (options) {
-  options.method = 'POST';
-  return this.http(options);
-};
+      }
+    });
+  }
+
+  get(options) {
+    options.method = 'GET';
+    return this.http(options);
+  }
+
+  post(options) {
+    options.method = 'POST';
+    return this.http(options);
+  }
+}
 export default AjaxUtil;

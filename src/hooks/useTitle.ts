@@ -1,4 +1,4 @@
-export const useTitle = () => {
+export default function useTitle() {
   let oldValue = 'Hello';
   let newValue = 'Word';
   const title = ref(oldValue);
@@ -11,4 +11,4 @@ export const useTitle = () => {
     title,
     changeTitle
   };
-};
+}

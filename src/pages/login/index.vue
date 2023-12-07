@@ -85,7 +85,7 @@ const { name, fullName, updateName } = useStore('test');
 const canClick = computed(() => formData.account && formData.password);
 
 function initRange() {
-    console.log(9, proxy.$t('login.langEn'))
+    console.log(9, proxy.$t('login.langEn'));
     range.value = [
         { value: 'en', text: proxy.$t('login.langEn') },
         { value: 'zh-Hans', text: proxy.$t('login.langZh') }

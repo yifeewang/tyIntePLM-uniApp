@@ -1,14 +1,17 @@
+import { ref } from 'vue';
+import useInit from './useInit';
 export default function useTitle() {
-  let oldValue = 'Hello';
-  let newValue = 'Word';
-  const title = ref(oldValue);
-  function changeTitle() {
-    oldValue = title.value;
-    title.value = newValue;
-    newValue = oldValue;
+  const { pageTitle } = useInit();
+  const refTitle = ref(pageTitle);
+  function changeTitle(title) {
+    console.log('changeTitle', title);
+    refTitle.value = title;
+    uni.setNavigationBarTitle({
+      title
+    });
   }
   return {
-    title,
+    pageTitle: refTitle,
     changeTitle
   };
 }

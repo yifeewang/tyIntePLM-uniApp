@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { computed, reactive, ref } from 'vue';
+import { computed, getCurrentInstance, reactive, ref } from 'vue';
+const { proxy } = getCurrentInstance() as any;
 const app: any = getApp();
 const { useInit, useTitle } = app.globalData.$hooks;
 const { turnPage } = app.globalData.$tools;
@@ -11,7 +12,7 @@ function goFirstPage() {
 const formData = reactive({
   account: '',
   password: '',
-  lang: 1,
+  lang: 'zh-Hans',
   argument: 0
 });
 
@@ -23,12 +24,9 @@ const readText = reactive([
 ]);
 
 const formRef: any = ref(null);
-const curLang: any = ref('简体中文');
+const curLang: any = ref('');
 
-const range = [
-  { value: 0, text: '英语' },
-  { value: 1, text: '简体中文' }
-];
+const range: any = ref([]);
 
 const rules = {
   // 对account字段进行必填验证
@@ -74,6 +72,7 @@ const rules = {
 onLoad(() => {
   const { pageName, pagePath, pageQuery } = useInit();
   console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
+  initRange();
 });
 
 onReady(() => {
@@ -86,9 +85,20 @@ const { name, fullName, updateName } = useStore('test');
 
 const canClick = computed(() => formData.account && formData.password);
 
-function langChange() {
-  curLang.value = range[formData.lang].text;
-  console.log('langChange', curLang.value, formData);
+function initRange() {
+  range.value = [
+    { value: 'en', text: proxy.$t('login.langEn') },
+    { value: 'zh-Hans', text: proxy.$t('login.langZh') }
+  ];
+  curLang.value = (
+    range.value.find((i) => i.value === uni.getLocale()) || {}
+  ).text;
+}
+
+function langChange(lang) {
+  curLang.value = (range.value.find((i) => i.value === lang) || {}).text;
+  proxy.$i18n.locale = formData.lang;
+  uni.setLocale(lang);
 }
 
 function submitForm() {
@@ -132,21 +142,21 @@ function submitForm() {
     </view>
     <view class="login-logo-wraper">
       <image class="login-logo" src="/static/login_logo.png" />
-      <view>登录PLM</view>
+      <view>{{ $t('login.logoTitle') }}</view>
     </view>
     <uni-forms ref="formRef" :model-value="formData" class="login-form-wraper">
       <uni-forms-item label="" name="account" class="login-form-item">
         <uni-easyinput
           v-model="formData.account"
           type="text"
-          placeholder="账号/电话/邮箱"
+          :placeholder="$t('login.accountPlaceHolder')"
         />
       </uni-forms-item>
       <uni-forms-item label="" name="password">
         <uni-easyinput
           v-model="formData.password"
           type="password"
-          placeholder="请输入密码"
+          :placeholder="$t('login.passwordPlaceholder')"
         ></uni-easyinput>
       </uni-forms-item>
       <button
@@ -154,7 +164,7 @@ function submitForm() {
         :class="[!!canClick ? 'active-btn' : '']"
         @click="submitForm"
       >
-        登录
+        {{ $t('login.loginBtn') }}
       </button>
       <uni-forms-item name="argument">
         <view class="login-arg">
@@ -162,11 +172,12 @@ function submitForm() {
             v-model="formData.argument"
             :localdata="readText"
           />
-          <view class="login-arg-content"
-            >我已阅读并同意<text>《协议条款》</text>和<text
-              >《隐私政策》</text
-            ></view
-          >
+          <view class="login-arg-content">
+            {{ $t('login.agreementText') }}
+            <text>《{{ $t('login.agreementTerms') }}》</text>
+            {{ $t('login.and') }}
+            <text>《{{ $t('login.privacyPolicy') }}》</text>
+          </view>
         </view>
       </uni-forms-item>
     </uni-forms>

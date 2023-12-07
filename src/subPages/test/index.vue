@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import Services from '@/api/index';
+import Services from '@/http/api/index';
 import { getCommonParams, setCommonParams } from '@/config/commonParams';
-import { useInit } from '@/hooks/useInit';
-import { useTitle } from '@/hooks/useTitle';
-import { onUrlPage } from '@/utils/router';
-import uniAsync from '@/utils/uniAsync';
+const app: any = getApp();
+const { useTitle, useInit } = app.globalData.$hooks;
+const { turnPage, uniAsync, onUrlPage } = app.globalData.$tools;
 
 onLoad(() => {
   const { pageName, pagePath, pageQuery } = useInit();

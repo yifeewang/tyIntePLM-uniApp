@@ -1,18 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { getCurrentInstance } from 'vue';
+const { proxy } = getCurrentInstance() as any;
 const app: any = getApp();
 const { useTitle } = app.globalData.$hooks;
 const { turnPage, formatDate } = app.globalData.$tools;
-
-const value1 = ref(0);
-const click1 = (item) => {
-  console.log('click1', item);
-  value1.value = item;
-};
-const change1 = (item) => {
-  console.log('change1', item);
-};
-const { title, changeTitle } = useTitle();
+const { pageTitle, changeTitle } = useTitle();
+function changePageTitle() {
+  // ui18设置标题
+  changeTitle(proxy.$t('index.title'));
+}
 function goTest() {
   turnPage('test', {
     a: 1
@@ -31,9 +27,9 @@ function goTest() {
         formatDate(new Date(), 'yyyy年mm月dd日')
       }}</text>
     </view>
-    <view @click="changeTitle">{{ title }}</view>
+    <view @click="changePageTitle">{{ pageTitle }}</view>
     <view class="p-20 w-100% box-border" @click="goTest">
-      <u-button type="warning" text="跳转"></u-button>
+      <button type="warn">{{ pageTitle }}</button>
     </view>
   </view>
 </template>

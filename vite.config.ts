@@ -7,7 +7,7 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
 
-import env from './src/config/env';
+import env from './src/config/index';
 
 // https://vitejs.dev/config/
 export default defineConfig({

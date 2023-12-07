@@ -1,15 +1,12 @@
 import tool from '@/utils/index';
 export default function useInit() {
-  onShow(() => {
-    console.log('Page Show');
-  });
-  onHide(() => {
-    console.log('Page Hide');
-  });
+  onShow(() => {});
+  onHide(() => {});
   const pages = getCurrentPages();
   const page = pages[pages.length - 1];
   // @ts-expect-error
-  const { fullPath } = page.$page;
+  const { fullPath, meta } = page.$page;
+  const { titleText } = meta?.navigationBar || {};
   const {
     name: pageName,
     path: pagePath,
@@ -19,6 +16,7 @@ export default function useInit() {
   return {
     pageName,
     pagePath,
-    pageQuery
+    pageQuery,
+    pageTitle: titleText
   };
 }

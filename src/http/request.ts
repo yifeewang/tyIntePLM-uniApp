@@ -5,12 +5,12 @@ import {
   responseInterceptorFuncWrapper
 } from './interceptorFunc';
 import Ajax from './AjaxUtil';
-import hostConfig from '@/config/env';
+import hostConfig from '@/config/index';
 // const useMock = true
 const useMock = false;
 const instance = Ajax.create({
   useMock,
-  baseURL: isH5 && isDevelopment ? '/api' : hostConfig.baseUrl, // 电信baseURL
+  baseURL: isH5 && isDevelopment ? '/api' : hostConfig.baseUrl, // baseURL
   timeout: 15000,
   concurrency: 6
 });

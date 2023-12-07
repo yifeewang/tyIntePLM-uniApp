@@ -2,7 +2,7 @@
     "pages": [
         {
             "name": "login",
-            "path": "pages/login/login",
+            "path": "pages/login/index",
             "style": {
                 "navigationBarTitleText": "登录页",
                 "app-plus": {
@@ -14,7 +14,7 @@
             "name": "index",
             "path": "pages/index/index",
             "style": {
-                "navigationBarTitleText": "首页",
+                "navigationBarTitleText": "%index.title%",
                 "app-plus": {
                     "titleNView": false //禁用原生导航栏  
                 }
@@ -22,19 +22,9 @@
         },
         {
             "name": "demo",
-            "path": "pages/demo/demo",
+            "path": "pages/demo/index",
             "style": {
-                "navigationBarTitleText": "demo",
-                "app-plus": {
-                    "titleNView": false //禁用原生导航栏  
-                }
-            }
-        },
-        {
-            "name": "webview",
-            "path": "pages/webview/index",
-            "style": {
-                "navigationBarTitleText": "webview",
+                "navigationBarTitleText": "%demo.title%",
                 "app-plus": {
                     "titleNView": false //禁用原生导航栏  
                 }
@@ -43,18 +33,18 @@
     ],
     "subPackages": [
         {
-            "root": "pages/test",
+            "root": "subPages",
             "pages": [
                 {
                     "name": "test",
-                    "path": "test",
+                    "path": "test/index",
                     "style": {
                         "navigationBarTitleText": "测试",
                         "app-plus": {
                             "titleNView": {
                                 // "type": "transparent",
                                 "searchInput": { //搜索框
-                                    "placeholder": "请输入订单关键字",
+                                    "placeholder": "%test.placeholder%",
                                     "borderRadius": "50rpx",
                                     "backgroundColor": "#f1f1f1",
                                     "align": "left", //对齐方式
@@ -71,6 +61,16 @@
                                     }
                                 ]
                             }
+                        }
+                    }
+                },
+                {
+                    "name": "webview",
+                    "path": "webview/index",
+                    "style": {
+                        "navigationBarTitleText": "webview",
+                        "app-plus": {
+                            "titleNView": false //禁用原生导航栏  
                         }
                     }
                 }
@@ -94,16 +94,16 @@
         "spacing": "3px",
         "list": [
             {
-                "pagePath": "pages/demo/demo",
+                "pagePath": "pages/demo/index",
                 "iconPath": "static/logo2.png",
                 "selectedIconPath": "static/logo2.png",
-                "text": "demo"
+                "text": "%index.tabTitle%"
             },
             {
                 "pagePath": "pages/index/index",
                 "iconPath": "static/logo1.png",
                 "selectedIconPath": "static/logo1.png",
-                "text": "首页"
+                "text": "%demo.tabTitle%"
             }
         ]
     }

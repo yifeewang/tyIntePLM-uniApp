@@ -6,13 +6,13 @@ const { useTitle } = app.globalData.$hooks;
 const { turnPage, formatDate } = app.globalData.$tools;
 const { pageTitle, changeTitle } = useTitle();
 function changePageTitle() {
-  // ui18设置标题
-  changeTitle(proxy.$t('index.title'));
+    // ui18设置标题
+    changeTitle(proxy.$t('index.title'));
 }
 function goTest() {
-  turnPage('test', {
-    a: 1
-  });
+    turnPage('test', {
+        a: 1
+    });
 }
 </script>
 
@@ -27,16 +27,16 @@ function goTest() {
         formatDate(new Date(), 'yyyy年mm月dd日')
       }}</text>
     </view>
-    <view @click="changePageTitle">{{ pageTitle }}</view>
+    <view @click="changePageTitle">{{ $t('index.title') }}</view>
     <view class="p-20 w-100% box-border" @click="goTest">
-      <button type="warn">{{ pageTitle }}</button>
+      <button type="warn">测试页</button>
     </view>
   </view>
 </template>
 
 <style scoped lang="scss">
 .title {
-  color: $uni-color-error;
+    color: $uni-color-error;
 }
 </style>
 @/utils/router-tool

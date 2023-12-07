@@ -5,9 +5,9 @@ const { useInit } = app.globalData.$hooks;
 const url = ref('');
 
 onLoad(() => {
-  const { pageName, pagePath, pageQuery } = useInit();
-  console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
-  url.value = decodeURIComponent(pageQuery.url);
+    const { pageName, pagePath, pageQuery } = useInit();
+    console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
+    url.value = decodeURIComponent(pageQuery.url);
 });
 </script>
 
@@ -17,7 +17,7 @@ onLoad(() => {
 
 <style lang="scss" scoped>
 #demo-uview {
-  width: 100vw;
-  height: 100vh;
+    width: 100vw;
+    height: 100vh;
 }
 </style>

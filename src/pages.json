@@ -97,13 +97,13 @@
                 "pagePath": "pages/demo/index",
                 "iconPath": "static/logo2.png",
                 "selectedIconPath": "static/logo2.png",
-                "text": "%index.tabTitle%"
+                "text": "%demo.tabTitle%"
             },
             {
                 "pagePath": "pages/index/index",
                 "iconPath": "static/logo1.png",
                 "selectedIconPath": "static/logo1.png",
-                "text": "%demo.tabTitle%"
+                "text": "%index.tabTitle%"
             }
         ]
     }

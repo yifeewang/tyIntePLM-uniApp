@@ -3,12 +3,13 @@ import { onHide, onLaunch, onShow } from '@dcloudio/uni-app';
 import tools from '@/utils';
 import hooks from '@/hooks';
 import Services from '@/http/api';
-getApp().globalData = {
-  $tools: tools,
-  $hooks: hooks,
-  $Services: Services
-};
-onLaunch(() => {});
+onLaunch(() => {
+  getApp().globalData = {
+    $tools: tools,
+    $hooks: hooks,
+    $Services: Services
+  };
+});
 onShow(() => {});
 onHide(() => {});
 </script>

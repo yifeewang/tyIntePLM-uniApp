@@ -6,8 +6,8 @@ const { useTitle, useInit } = app.globalData.$hooks;
 const { turnPage, uniAsync, onUrlPage } = app.globalData.$tools;
 
 onLoad(() => {
-  const { pageName, pagePath, pageQuery } = useInit();
-  console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
+    const { pageName, pagePath, pageQuery } = useInit();
+    console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
 });
 
 const { title, changeTitle } = useTitle();
@@ -15,39 +15,39 @@ const { title, changeTitle } = useTitle();
 const { name, fullName, updateName } = useStore('test');
 
 async function getTest() {
-  const getTest = await Services.getTest({ a: 1 });
-  if (!getTest) {
-    uni.showToast({
-      title: '自定义异常处理'
-    });
-    return;
-  }
-  // getTest.data?.age
-  // getTest.data?.name
-  console.log(getTest, 'getTest');
+    const getTest = await Services.getTest({ a: 1 });
+    if (!getTest) {
+        uni.showToast({
+            title: '自定义异常处理'
+        });
+        return;
+    }
+    // getTest.data?.age
+    // getTest.data?.name
+    console.log(getTest, 'getTest');
 }
 async function postTest() {
-  const postTest = await Services.postTest({ a: 1 });
-  if (!postTest) return;
-  // postTest.data?.val
-  console.log(postTest, 'postTest');
+    const postTest = await Services.postTest({ a: 1 });
+    if (!postTest) return;
+    // postTest.data?.val
+    console.log(postTest, 'postTest');
 }
 
 function getCommonParam() {
-  console.log(getCommonParams());
+    console.log(getCommonParams());
 }
 function setCommonParam() {
-  setCommonParams({ channel: 'test' });
-  getCommonParam();
+    setCommonParams({ channel: 'test' });
+    getCommonParam();
 }
 
 async function uniAsyncTest() {
-  const systemInfo = await uniAsync.getSystemInfo();
-  console.log(systemInfo, 'systemInfo');
+    const systemInfo = await uniAsync.getSystemInfo();
+    console.log(systemInfo, 'systemInfo');
 }
 
 function onScrollToLower() {
-  console.log('自定义 onScrollToLower');
+    console.log('自定义 onScrollToLower');
 }
 </script>
 

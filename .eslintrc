@@ -1,23 +1,25 @@
 {
-  "extends": ["@antfu", "prettier"],
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "trailingComma": "none"
-      }
+    "extends": [
+        "@antfu",
+        "prettier"
     ],
-    "promise/param-names": "off",
-    "prefer-rest-params": "off",
-    "@typescript-eslint/no-this-alias": "off",
-    "antfu/if-newline": "off",
-    "@typescript-eslint/ban-ts-comment": "off",
-    "@typescript-eslint/ban-ts-ignore": "off",
-    "eslint-comments/no-unlimited-disable": "off",
-    "arrow-body-style": "off",
-    "prefer-arrow-callback": "off",
-    "no-console": "off"
-  }
+    "plugins": [
+        "prettier"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "promise/param-names": "off",
+        "prefer-rest-params": "off",
+        "@typescript-eslint/no-this-alias": "off",
+        "antfu/if-newline": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/ban-ts-ignore": "off",
+        "eslint-comments/no-unlimited-disable": "off",
+        "arrow-body-style": "off",
+        "prefer-arrow-callback": "off",
+        "no-console": "off"
+    }
 }

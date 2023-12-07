@@ -85,18 +85,19 @@ const { name, fullName, updateName } = useStore('test');
 const canClick = computed(() => formData.account && formData.password);
 
 function initRange() {
+    console.log(9, proxy.$t('login.langEn'))
     range.value = [
         { value: 'en', text: proxy.$t('login.langEn') },
         { value: 'zh-Hans', text: proxy.$t('login.langZh') }
     ];
     curLang.value = (
-        range.value.find((i) => i.value === uni.getLocale()) || {}
+        range.value.find((i) => i.value === uni.getStorageSync('lang')) || {}
     ).text;
 }
 
 function langChange(lang) {
     proxy.$i18n.locale = formData.lang;
-    uni.setLocale(lang);
+    uni.setStorageSync('lang', lang);
     curLang.value = (range.value.find((i) => i.value === lang) || {}).text;
     changeTitle(proxy.$t('login.title'));
 }

@@ -4,11 +4,11 @@ import tools from '@/utils';
 import hooks from '@/hooks';
 import Services from '@/http/api';
 onLaunch(() => {
-  getApp().globalData = {
-    $tools: tools,
-    $hooks: hooks,
-    $Services: Services
-  };
+    getApp().globalData = {
+        $tools: tools,
+        $hooks: hooks,
+        $Services: Services
+    };
 });
 onShow(() => {});
 onHide(() => {});

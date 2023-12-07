@@ -39,4 +39,3 @@ function goTest() {
     color: $uni-color-error;
 }
 </style>
-@/utils/router-tool

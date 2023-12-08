@@ -1,7 +1,6 @@
 /**
  * 此hooks为跨平台兼容hooks
  */
-import { getCurrentInstance } from 'vue';
 import useTitle from './useTitle';
 import { tabList } from '@/utils/urlMap-tool';
 export default function usePlatformCompatibility() {

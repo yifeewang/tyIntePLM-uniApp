@@ -13,8 +13,7 @@ if(!cur_cache_lang) {
 }
 const i18nConfig = {
     locale: cur_cache_lang, // 获取已设置的语言
-    //   legacy: false,
-    //   globalInjection: true, // 全局注入 $t 函数
+    allowComposition: true, // 允许组合式api
     messages
 };
 const i18n = createI18n(i18nConfig);

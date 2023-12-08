@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
 const app: any = getApp();
 const { useInit } = app.globalData.$hooks;
 const url = ref('');

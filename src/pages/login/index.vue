@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { computed, getCurrentInstance, reactive, ref } from 'vue';
 const { proxy } = getCurrentInstance() as any;
 const app: any = getApp();
 const { useInit, useTitle } = app.globalData.$hooks;
@@ -68,6 +67,7 @@ const rules = {
 };
 
 const { name, fullName, updateName } = useStore('test');
+console.log(123, name, fullName, updateName);
 // 按钮是否可点击
 const canClick = computed(() => formData.account && formData.password);
 

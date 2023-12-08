@@ -1,7 +1,6 @@
 /**
  * 此hooks为 设置/获取 页面标题
  */
-import { ref } from 'vue';
 import useInit from './useInit';
 export default function useTitle() {
     const { pageTitle } = useInit();

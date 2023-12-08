@@ -6,7 +6,7 @@ onLoad(() => {
     const { pageName, pagePath, pageQuery } = useInit();
     const { changeLangText } = usePlatformCompatibility();
     changeLangText('demo');
-    console.log(pageName, pagePath, pageQuery, 'pageName1,pagePath1, pageQuery1');
+    console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
 });
 function goUview(url) {
     turnPage('webview', { url });

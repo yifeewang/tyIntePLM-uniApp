@@ -72,7 +72,7 @@ const rules = {
 
 onLoad(() => {
     const { pageName, pagePath, pageQuery } = useInit();
-    console.log(pageName, pagePath, pageQuery, 'pageName2,pagePath2, pageQuery2');
+    console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
     // 初始化语言选择枚举
     initRange();
     // 初始化语言

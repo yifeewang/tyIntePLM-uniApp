@@ -5,30 +5,27 @@ const app: any = getApp();
 const { useInit, useTitle } = app.globalData.$hooks;
 const { turnPage } = app.globalData.$tools;
 const { changeTitle } = useTitle();
-
-function goFirstPage() {
-    turnPage('demo');
-}
-
+// 表单信息
 const formData = reactive({
     account: '',
     password: '',
     lang: uni.getStorageSync('lang'),
     argument: 0
-});
-
+}); 
+// 隐私协议 checkbox 
 const readText = reactive([
     {
         text: '',
         value: 1
     }
 ]);
-
+// 表单ref
 const formRef: any = ref(null);
+// 当前语言
 const curLang: any = ref('');
-
+// 多语言列表
 const range: any = ref([]);
-
+// 表单规则
 const rules = {
     // 对account字段进行必填验证
     account: {
@@ -70,6 +67,10 @@ const rules = {
     }
 };
 
+const { name, fullName, updateName } = useStore('test');
+// 按钮是否可点击
+const canClick = computed(() => formData.account && formData.password);
+
 onLoad(() => {
     const { pageName, pagePath, pageQuery } = useInit();
     console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
@@ -82,11 +83,9 @@ onLoad(() => {
 onReady(() => {
     formRef?.value?.setRules(rules);
 });
-
-const { name, fullName, updateName } = useStore('test');
-
-const canClick = computed(() => formData.account && formData.password);
-
+/**
+ * @description 初始化多语言枚举
+ */
 function initRange() {
     console.log(9, proxy.$t('login.langEn'));
     range.value = [
@@ -97,14 +96,25 @@ function initRange() {
         range.value.find((i) => i.value === uni.getStorageSync('lang')) || {}
     ).text;
 }
-
+/**
+ * @description 切换多语言
+ * @param lang 
+ */
 function langChange(lang) {
     proxy.$i18n.locale = formData.lang;
     uni.setStorageSync('lang', lang);
     curLang.value = (range.value.find((i) => i.value === lang) || {}).text;
     changeTitle(proxy.$t('login.title'));
 }
-
+/**
+ * @description 跳转到首页
+ */
+function goFirstPage() {
+    turnPage('demo');
+}
+/**
+ * @description 提交表单
+ */
 function submitForm() {
     console.log('submitForm', formData, canClick.value);
     formRef.value

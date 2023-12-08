@@ -52,7 +52,7 @@
         "space-infix-ops": 2,
         "no-var": 1,
         "no-const-assign": 2,
-        "no-unused-vars": 1,
+        "no-unused-vars": "off",
         "no-multiple-empty-lines": ["error", { "max": 1 }],
         "eol-last": "error"
     }

@@ -1,4 +1,9 @@
-// 日期格式化
+/**
+ * @description 日期格式化
+ * @param date 日期
+ * @param fmt 格式化标准
+ * @returns 
+ */
 export const formatDate = (date, fmt = 'YYYY-MM-dd HH:mm:ss') => {
     if (date == null) return null;
     if (typeof date === 'string') {
@@ -53,7 +58,11 @@ export const formatDate = (date, fmt = 'YYYY-MM-dd HH:mm:ss') => {
     }
     return fmt;
 };
-// 判断时间是否在本月
+/**
+ * @description 判断时间是否在本月
+ * @param inDate Date
+ * @returns 
+ */
 export const isSameMonth = function (inDate) {
     // inDate 是一个date对象
     const nowDate = new Date();
@@ -62,8 +71,11 @@ export const isSameMonth = function (inDate) {
     nowDate.getMonth() === new Date(inDate).getMonth()
     );
 };
-
-// 判断时间是否在本周
+/**
+ * @description 判断时间是否在本周
+ * @param inDate Date
+ * @returns 
+ */
 export const isSameWeek = function (inDate) {
     // inDate 是一个date对象
     const inDateStr = new Date(inDate).toLocaleDateString(); // 获取如YYYY/MM/DD的日期
@@ -79,7 +91,11 @@ export const isSameWeek = function (inDate) {
     }
     return false;
 };
-// 获取星期几
+/**
+ * @description 获取星期几
+ * @param date Date
+ * @returns 
+ */
 export const getWeekDate = (date) => {
     const day = new Date(date).getDay();
     const weeks = [
@@ -95,14 +111,26 @@ export const getWeekDate = (date) => {
     return week;
 };
 // 获取当天零点
-export const getTodayZeroTime = (date) => {
+/**
+ * @description 获取当天零点
+ * @returns 
+ */
+export const getTodayZeroTime = () => {
     return new Date(new Date().toLocaleDateString()).getTime();
 };
-// 判断时间是否在当天
+/**
+ * @description 判断时间是否在当天
+ * @param date Date
+ * @returns 
+ */
 export const isToday = (date) => {
     return new Date().toDateString() === new Date(date).toDateString();
 };
-// 判断时间是否在昨天
+/**
+ * @description 判断时间是否在昨天
+ * @param theDate Date
+ * @returns 
+ */
 export const isYestday = (theDate) => {
     const date: any = new Date();
     const yesterday: any = new Date(date - 1000 * 60 * 60 * 24);
@@ -117,8 +145,12 @@ export const isYestday = (theDate) => {
         return false;
     }
 };
-
-// 获取月份的天数
+/**
+ * @description 获取月份的天数
+ * @param year Date
+ * @param month Date
+ * @returns 
+ */
 export const getMonthDays = (year, month) => {
     const stratDate: any = new Date(year, month - 1, 1);
     const endData: any = new Date(year, month, 1);

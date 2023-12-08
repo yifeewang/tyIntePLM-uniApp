@@ -36,7 +36,11 @@ export const needAuthPath: Array<string> = [];
 const types = {
     h5: /^(https|http):\/\//i
 };
-
+/**
+ * 
+ * @param url 
+ * @returns 
+ */
 export function getUrlType(url: string) {
     if (types.h5.test(url)) return 'h5';
     return 'other';

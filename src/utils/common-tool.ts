@@ -1,5 +1,10 @@
 import { isArray, isDate, isObject, isSymbol } from './is-tool';
-// 节流
+/**
+ * @description 节流
+ * @param fn 
+ * @param timer 
+ * @returns 
+ */
 export const throttle = (fn, timer = 500) => {
     let preTime;
     return function (params) {
@@ -11,8 +16,12 @@ export const throttle = (fn, timer = 500) => {
         }
     };
 };
-
-// 函数防抖
+/**
+ * @description 函数防抖
+ * @param func 
+ * @param wait 
+ * @returns 
+ */
 export const debounce = (func, wait) => {
     let timer;
     return function () {
@@ -27,7 +36,11 @@ export const debounce = (func, wait) => {
         }, wait);
     };
 };
-
+/**
+ * @description sleep
+ * @param time 
+ * @returns 
+ */
 export const sleep = (time = 0) => {
     return new Promise((resolve, reject) => {
         if (time) {
@@ -39,9 +52,15 @@ export const sleep = (time = 0) => {
         }
     });
 };
-
+/**
+ * @description url处理工具对象
+ */
 export const qs = {
-    // 解析url
+    /**
+     * @description 解析url,获取参数
+     * @param {*} str 
+     * @returns {*} obj
+     */
     _parse: (str = '') => {
         const arr = str.split('?');
         const obj = {};
@@ -56,7 +75,11 @@ export const qs = {
         });
         return obj;
     },
-    // 解析参数
+    /**
+     * @description 解析url？后面的,获取参数
+     * @param {*} str 
+     * @returns {*} obj
+     */
     parse: (str = '') => {
         const arr = str.split('&');
         const obj = {};
@@ -71,7 +94,14 @@ export const qs = {
         });
         return obj;
     },
-    // 解析url
+    /**
+     * @description 解析url
+     * @param {*} fullPath 
+     * @returns {*} obj
+     * @returns {*} obj.name
+     * @returns {*} obj.path
+     * @returns {*} obj.query
+     */
     parseUrl: (fullPath = '') => {
         const [path, queryStr] = fullPath.split('?');
         const name = path.slice(path.lastIndexOf('/') + 1);
@@ -86,7 +116,12 @@ export const qs = {
             query
         };
     },
-    // 还原url
+    /**
+     * @description 还原url
+     * @param path 
+     * @param query 
+     * @returns path
+     */
     restoreUrl: (path: string, query: Object) => {
         let count = 0;
         for (const key in query) {
@@ -95,7 +130,11 @@ export const qs = {
         }
         return path;
     },
-    // 还原参数
+    /**
+     * @description 还原参数
+     * @param obj 
+     * @returns path  eg:a=1&b=2
+     */
     stringify: (obj = {}) => {
         const arr: any = [];
         for (const key in obj) {
@@ -103,13 +142,20 @@ export const qs = {
         }
         return arr.join('&');
     },
-    // encode query
+    /**
+     * @description encode query
+     * @param obj 
+     * @returns 
+     */
     encodeQuery: (obj = {}) => {
         return encodeURIComponent(qs.stringify(obj));
     }
 };
-
-// 验证身份证是否正确
+/**
+ * @description 验证身份证是否正确
+ * @param str 
+ * @returns {*} boolean
+ */
 export const validateSFZ = (str) => {
     if (!str) {
         return false;
@@ -120,8 +166,12 @@ export const validateSFZ = (str) => {
     }
     return true;
 };
-
-// 比较版本号(多段式  xx.xx.xx, v1和v2长度一致即可)
+/**
+ * @description 比较版本号(多段式  xx.xx.xx, v1和v2长度一致即可)
+ * @param v1 
+ * @param v2 
+ * @returns 
+ */
 export const compareVersion = (v1, v2) => {
     try {
         const arr1 = v1.split('.');
@@ -142,19 +192,30 @@ export const compareVersion = (v1, v2) => {
         return 0;
     }
 };
-
-// parse string
-export const formatString = (target) => {
+/**
+ * @description parse string
+ * @param target 
+ * @returns 
+ */
+export const parseString = (target) => {
     if (!target) return null;
     return typeof target === 'string' ? JSON.parse(target) : target;
 };
-// 手机号校验
+/**
+ * @description 手机号校验
+ * @param phoneNum 
+ * @returns 
+ */
 export const isPhoneNumber = (phoneNum) => {
     const reg = /^[1][3,4,5,6,7,8,9][0-9]{9}$/;
     return reg.test(phoneNum);
 };
-
-// 数组去重 arr：数组;key:根据数组中为key的键名去重
+/**
+ * @description 数组去重 arr：数组;key:根据数组中为key的键名去重
+ * @param arr 
+ * @param key 
+ * @returns newArr
+ */
 export const filterArr = (arr, key) => {
     const hash = {};
     return arr.reduce((ss, item) => {
@@ -163,7 +224,11 @@ export const filterArr = (arr, key) => {
         return ss;
     }, []);
 };
-
+/**
+ * @description sortByASCII
+ * @param obj 
+ * @returns 
+ */
 export const sortByASCII = (obj) => {
     const arr = Object.keys(obj);
     const sortArr = arr.sort();
@@ -173,8 +238,10 @@ export const sortByASCII = (obj) => {
     }
     return sortObj;
 };
-
-// 获取uuid
+/**
+ * @description 获取uuid
+ * @returns uuid
+ */
 export const getUUid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = (Math.random() * 16) | 0;
@@ -182,8 +249,11 @@ export const getUUid = () => {
         return v.toString(16);
     });
 };
-
-// 深拷贝
+/**
+ * @description 深拷贝
+ * @param source 
+ * @returns newSource
+ */
 export function deepClone<T>(source: T): T {
     return Array.isArray(source)
         ? source.map((item) => deepClone(item))
@@ -201,8 +271,12 @@ export function deepClone<T>(source: T): T {
                 }, Object.create(Object.getPrototypeOf(source)))
                 : (source as T);
 }
-
-// 数组深对比
+/**
+ * @description 数组对比
+ * @param a 
+ * @param b 
+ * @returns 
+ */
 function looseCompareArrays(a: any[], b: any[]) {
     if (a.length !== b.length) return false;
     let equal = true;
@@ -211,8 +285,12 @@ function looseCompareArrays(a: any[], b: any[]) {
     }
     return equal;
 }
-
-// 深对比
+/**
+ * @description 深对比
+ * @param a 
+ * @param b 
+ * @returns 
+ */
 export function looseEqual(a: any, b: any): boolean {
     if (a === b) return true;
 
@@ -250,13 +328,18 @@ export function looseEqual(a: any, b: any): boolean {
     }
     return String(a) === String(b);
 }
-
-// 深对比index
+/**
+ * @description 深对比index
+ * @param arr 
+ * @param val 
+ * @returns 
+ */
 export function looseIndexOf(arr: any[], val: any): number {
     return arr.findIndex((item) => looseEqual(item, val));
 }
-
-// 使用proxy转换为异步化的uni方法
+/**
+ * @description 使用proxy转换为异步化的uni方法
+ */
 export const uniAsync = new Proxy({} as any, {
     get(_, name) {
         return (obj: any) =>

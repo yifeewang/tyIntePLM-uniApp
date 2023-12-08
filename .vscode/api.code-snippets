@@ -3,11 +3,18 @@
     "scope": "typescript",
     "prefix": "a",
     "body": [
-      "import axios from '@/utils/axios'\n",
-      "const api$1 = {",
-      "  get$1: (data = {}) => axios.get('/$2', data),",
-      "}\n",
-      "export default api$1\n"
+      "import { getInstance } from '@/http/request';\n",
+      "const apiLogin$1 = {",
+      "    goLogin$2(data = {}, options = {}) {",
+      "        return getInstance.http({",
+      "            url: '/rest/userService/v1/user/userLogin$3',",
+      "            method: 'POST',",
+      "            data,",
+      "            ...options",
+      "        });",
+      "    }",
+      "};\n",
+      "export default apiLogin$1;\n"
     ],
     "description": "接口模板"
   }

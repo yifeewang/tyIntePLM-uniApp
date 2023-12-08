@@ -103,6 +103,21 @@
     "vue-global-api": "0.4.1",
     "vue-tsc": "1.2.0"
   },
+  "husky": {
+      "hooks": {
+          "pre-commit": "lint-staged"
+      }
+  },
+  "lint-staged": {
+      "src/**/*.{js,ts,vue}": [
+          "eslint --fix",
+          "git add"
+      ],
+      "src/**/*.{css,scss,vue}": [
+          "stylelint --fix",
+          "git add"
+      ]
+  },
   "engines": {
     "node": ">=16.0.0"
   }

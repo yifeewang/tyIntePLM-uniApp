@@ -64,9 +64,9 @@ export default defineConfig({
     presets: [
         presetAttributify(),
         presetUno(),
-    presetRemToRpx({
-        baseFontSize: 8 // 0.25rem 2rpx 1px
-    }) as Preset
+        presetRemToRpx({
+            baseFontSize: 8 // 0.25rem 2rpx 1px
+        }) as Preset
     ],
     theme: {
         preflightRoot: ['page,::before,::after']

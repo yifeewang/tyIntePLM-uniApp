@@ -1,8 +1,8 @@
-# uni-app + vue3.x + vite  项目工程化搭建
+# uni-app + vue3.x + vite + unocss + uni-ui  项目工程化搭建
 
 ## 简介
 
-`uni-app + vue3.x + vite` 项目工程化搭建，集成 `ESLint`、`Prettier`、`Stylelint`、`husky`、`lint-staged` 、`commitlint`等代码规范工具，集成了原子化css引擎 `unocss`, 并且使用 `pinia` 替代 `vuex`, 同时集成了 pinia 在 uniapp 中的持久化插件[pinia-plugin-persist-uni](https://github.com/Allen-1998/pinia-plugin-persist-uni)以及 storeToRefs 增强插件[pinia-auto-refs](https://github.com/Allen-1998/pinia-auto-refs)。
+`uni-app + vue3.x + vite + unocss + uni-ui` 项目工程化搭建，使用官方扩展ui库 `uni-ui`, 集成 `ESLint`、`Prettier`、`Stylelint`、`husky`、`lint-staged` 、`commitlint`等代码规范工具，集成了原子化css引擎 `unocss`, 并且使用 `pinia` 替代 `vuex`, 同时集成了 pinia 在 uniapp 中的持久化插件[pinia-plugin-persist-uni](https://github.com/Allen-1998/pinia-plugin-persist-uni)以及 storeToRefs 增强插件[pinia-auto-refs](https://github.com/Allen-1998/pinia-auto-refs)。
 
 [相关文章 - pinia-plugin-persist-uni 在 uni-app 中持久化存储 pinia](https://juejin.cn/post/7081275565008748552)
 
@@ -11,7 +11,7 @@
 
 ## 所用技术栈
 
-- 依赖管理：node v16.x+, 如果你已经使用 nvm，可以参考 [Github: nvm](https://github.com/nvm-sh/nvm#deeper-shell-integration) 来实现 node 版本的自动切换
+- 依赖管理：node v16.x+, npm v8.x+, 如果使用 nvm，可以参考 [Github: nvm](https://github.com/nvm-sh/nvm#deeper-shell-integration) 来实现 node 版本的自动切换
 - 小程序框架： [uni-app](https://uniapp.dcloud.io/)
 - 构建工具： [Vite](https://vitejs.dev/)
 - 前端框架： [Vue3.x](https://v3.cn.vuejs.org/)
@@ -50,21 +50,24 @@
 │   ├── addPage.ts 根据pages.json自动生成页面
 ├── src
 │   ├── @types ts类型定义
-│   ├── api 请求中心
 │   ├── components 项目组件
 │   ├── config 全局配置
 │   ├── @helper storeToRefs 增强(pinia-auto-refs自动生成)
-│   ├── hooks hooks函数
+│   ├── hooks 自定义hooks函数
+│   ├── http 请求中心
+│   ├── locale 多语言
 │   ├── pages 页面目录
+│   ├── subPages 分包
 │   ├── static 静态资源、css
 │   ├── store 状态管理
+│   ├── uni_modules uni-ui
 │   └── utils 工具包
-│      ├── platform.ts 获取运行环境
-│      ├── request.ts 请求方法封装
-│      ├── router.ts 路由跳转封装
-│      ├── shared.ts 基础公共方法
-│      ├── uniAsync.ts async调用异步方法
-│      └── urlMap.ts 获取页面类型
+│      ├── common-tool.ts 通用工具方法
+│      ├── date-tool.ts 时间处理方法
+│      ├── index.ts 引入并导出utils下所有文件方法
+│      ├── platform-tool.ts 获取运行环境
+│      ├── router-tool.ts 路由跳转封装
+│      └── urlMap-tools.ts 获取页面信息/类型
 │   ├── App.vue 入口文件
 │   ├── auto-imports.d.ts 自动导入vue-composition-api(unplugin-auto-import自动生成)
 │   ├── components.d.ts 自动导入组件(unplugin-vue-components自动生成)
@@ -86,14 +89,14 @@
 ├── .prettierignore prettier忽略配置
 ├── .stylelintrc.js stylelint配置
 ├── commitlint.config.js commitlint配置
-├── FAQ.md
 ├── index.html 项目入口
 ├── LICENSE MIT说明
 ├── package-lock.json
 ├── package.json
 ├── prettier.config.js prettier配置
+├── preset-rem-to-rpx 自定义unocss presets配置
+├── README-FAQ.md
 ├── README.md
-├── TODO.md
 ├── tsconfig.json ts配置
 ├── unocss.config.ts unocss配置
 └── vite.config.ts vite配置

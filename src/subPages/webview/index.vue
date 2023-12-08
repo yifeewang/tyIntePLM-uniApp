@@ -6,7 +6,7 @@ const url = ref('');
 
 onLoad(() => {
     const { pageName, pagePath, pageQuery } = useInit();
-    console.log(pageName, pagePath, pageQuery, 'pageName3,pagePath3, pageQuery3');
+    console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
     url.value = decodeURIComponent(pageQuery.url);
 });
 </script>

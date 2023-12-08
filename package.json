@@ -110,11 +110,11 @@
     }
   },
   "lint-staged": {
-    "src/**/*": [
+    "src/**/*.{js,ts,vue}": [
       "eslint --fix",
       "git add"
     ],
-    "src/**/*.{scss,vue}": [
+    "src/**/*.{css,scss,vue}": [
       "stylelint --fix",
       "git add"
     ]

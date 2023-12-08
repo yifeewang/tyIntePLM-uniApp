@@ -1,6 +1,11 @@
 export default {
     index: {
-        title: 'index'
+        title: 'index',
+        tabBarText: 'index'
+    },
+    demo: {
+        title: 'demo',
+        tabBarText: 'demo'
     },
     login: {
         title: 'login',

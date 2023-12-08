@@ -4,7 +4,7 @@ const { proxy } = getCurrentInstance() as any;
 const app: any = getApp();
 const { useInit, useTitle } = app.globalData.$hooks;
 const { turnPage } = app.globalData.$tools;
-const { pageTitle, changeTitle } = useTitle();
+const { changeTitle } = useTitle();
 
 function goFirstPage() {
     turnPage('demo');
@@ -13,7 +13,7 @@ function goFirstPage() {
 const formData = reactive({
     account: '',
     password: '',
-    lang: 'zh-Hans',
+    lang: uni.getStorageSync('lang'),
     argument: 0
 });
 
@@ -73,7 +73,10 @@ const rules = {
 onLoad(() => {
     const { pageName, pagePath, pageQuery } = useInit();
     console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
+    // 初始化语言选择枚举
     initRange();
+    // 初始化语言
+    changeTitle(proxy.$t('login.title'));
 });
 
 onReady(() => {

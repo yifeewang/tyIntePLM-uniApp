@@ -1,6 +1,11 @@
 export default {
     index: {
-        title: '你好 i18n'
+        title: '首页',
+        tabBarText: '首页'
+    },
+    demo: {
+        title: '示例',
+        tabBarText: '示例'
     },
     login: {
         title: '登录',

@@ -1,10 +1,12 @@
 import pagesJson from '../pages.json';
 
+// tabList
+export const tabList = pagesJson.tabBar.list;
 // tabBar页面
 const tabBarPagesMap = pagesJson.pages.map((i) => {
     const isTabBar =
-    pagesJson.tabBar.list?.length &&
-    pagesJson.tabBar.list.find((tab) => tab.pagePath === i.path);
+    tabList?.length &&
+    tabList.find((tab) => tab.pagePath === i.path);
     return {
         type: isTabBar ? 'tabBarPage' : 'page',
         name: i.name,

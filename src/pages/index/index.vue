@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { getCurrentInstance } from 'vue';
-const { proxy } = getCurrentInstance() as any;
 const app: any = getApp();
-const { useTitle } = app.globalData.$hooks;
+const { useTitle, useInit, usePlatformCompatibility } = app.globalData.$hooks;
 const { turnPage, formatDate } = app.globalData.$tools;
-const { pageTitle, changeTitle } = useTitle();
+const { changeTitle } = useTitle();
+onLoad(() => {
+    const { pageName, pagePath, pageQuery } = useInit();
+    const { changeLangText } = usePlatformCompatibility();
+    changeLangText('index');
+    console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
+});
 function changePageTitle() {
     // ui18设置标题
-    changeTitle(proxy.$t('index.title'));
+    changeTitle('hallo');
 }
 function goTest() {
     turnPage('test', {

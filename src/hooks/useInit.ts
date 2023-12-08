@@ -1,3 +1,6 @@
+/**
+ * 此hooks为 获取页面参数
+ */
 import tool from '@/utils/index';
 export default function useInit() {
     onShow(() => {});

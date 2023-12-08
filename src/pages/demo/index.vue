@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 const app: any = getApp();
-const { useInit } = app.globalData.$hooks;
+const { useInit, usePlatformCompatibility } = app.globalData.$hooks;
 const { turnPage } = app.globalData.$tools;
 onLoad(() => {
     const { pageName, pagePath, pageQuery } = useInit();
+    const { changeLangText } = usePlatformCompatibility();
+    changeLangText('demo');
     console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
 });
 function goUview(url) {

@@ -4,10 +4,11 @@ import tools from '@/utils';
 import hooks from '@/hooks';
 import Services from '@/http/api';
 onLaunch(() => {
+    // 挂载全局变量
     getApp().globalData = {
-        $tools: tools,
-        $hooks: hooks,
-        $Services: Services
+        $tools: tools, // 工具方法
+        $hooks: hooks, // 自定义hooks
+        $Services: Services // http请求
     };
 });
 onShow(() => {});

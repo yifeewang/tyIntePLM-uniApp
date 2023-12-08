@@ -1,6 +1,6 @@
 {
   "index.title": "index",
-  "index.tabTitle": "indexTab",
+  "index.tabBarText": "indexTab",
   "demo.title": "demo",
-  "demo.tabTitle": "demoTab"
+  "demo.tabBarText": "demoTab"
 }

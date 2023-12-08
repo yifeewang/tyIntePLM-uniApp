@@ -1,11 +1,10 @@
 import 'uno.css';
 import { createSSRApp } from 'vue';
-import { createI18n } from 'vue-i18n'; // v9.x
+import { createI18n } from 'vue-i18n';
 import App from './App.vue';
 import store from '@/store';
 import messages from '@/locale/lang';
-// import tools from '@/utils';
-// import hooks from '@/hooks';
+// 初始化lang storage
 console.log('lang', uni.getStorageSync('lang'));
 let cur_cache_lang = uni.getStorageSync('lang');
 if(!cur_cache_lang) {

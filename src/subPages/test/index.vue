@@ -7,7 +7,7 @@ const { turnPage, uniAsync, onUrlPage } = app.globalData.$tools;
 
 onLoad(() => {
     const { pageName, pagePath, pageQuery } = useInit();
-    console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
+    console.log(pageName, pagePath, pageQuery, 'pageName4,pagePath4,pageQuery4');
 });
 
 const { title, changeTitle } = useTitle();

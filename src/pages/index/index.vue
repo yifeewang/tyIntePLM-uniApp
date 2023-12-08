@@ -7,7 +7,7 @@ onLoad(() => {
     const { pageName, pagePath, pageQuery } = useInit();
     const { changeLangText } = usePlatformCompatibility();
     changeLangText('index');
-    console.log(pageName, pagePath, pageQuery, 'pageName1,pagePath2, pageQuery3');
+    console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
 });
 function changePageTitle() {
     // ui18设置标题

@@ -67,7 +67,6 @@ const rules = {
 };
 
 const { name, fullName, updateName } = useStore('test');
-console.log(123, name, fullName, updateName);
 // 按钮是否可点击
 const canClick = computed(() => formData.account && formData.password);
 
@@ -87,7 +86,6 @@ onReady(() => {
  * @description 初始化多语言枚举
  */
 function initRange() {
-    console.log(9, proxy.$t('login.langEn'));
     range.value = [
         { value: 'en', text: proxy.$t('login.langEn') },
         { value: 'zh-Hans', text: proxy.$t('login.langZh') }

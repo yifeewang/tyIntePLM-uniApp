@@ -1,4 +1,4 @@
-import { isDevelopment, isH5 } from '../utils/platform-tool';
+import { isH5, isProduction } from '../utils/platform-tool';
 import {
     requestInterceptorFuncWrapper,
     responseInterceptorErrFunc,
@@ -10,14 +10,14 @@ import hostConfig from '@/config/index';
 const useMock = false;
 const instance = Ajax.create({
     useMock,
-    baseURL: isH5 && isDevelopment ? '/api' : hostConfig.baseUrl, // baseURL
+    baseURL: isH5 && !isProduction ? '/rest' : hostConfig.baseUrl, // baseURL
     timeout: 15000,
     concurrency: 6
 });
 // 实例2用于lock时发送请求
 const instance2 = Ajax.create({
     useMock,
-    baseURL: hostConfig.baseUrl,
+    baseURL: isH5 && !isProduction ? '/rest' : hostConfig.baseUrl,
     timeout: 10000,
     concurrency: 6
 });

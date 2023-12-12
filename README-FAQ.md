@@ -10,6 +10,19 @@ node版本 >= 16
 npm版本 >= 8
 yarn版本 >= 1.22
 
+## npm i报错：npm ERR! Unexpected token '.'
+
+**原因：**
+当通过nvm切换nodejs版本为16以上时，npm install [package]报错：Unexpected token '.'
+
+该问题不是npm的问题，也不是nodejs的问题，是nvm-windows的问题。
+
+**解决方法：**
+1. 前往github 下载[nvm更新包](https://github.com/coreybutler/nvm-windows/releases)， 更新nvm-windows到版本1.1.9以上,
+   然后重新删除已安装的有问题的node版本，重新安装
+
+2. 使用yarn安装依赖
+
 ## node 18+ 版本 mac M1编译报错问题
 
 **原因：**
@@ -99,7 +112,19 @@ interface ComponentCustomProperties {
 
 ## 如何生存 iconfont 文件
 https://juejin.cn/post/7079674057041395726?searchId=20231208141322519550C6B0CB5C8FFE8E
+
 ## Proxy相关属性再setup中是undefined
 
 **解决方法：**
 需要在onload之后再获取
+
+## 支持require语法
+
+**原因：**
+只支持import语法，不支持require语法
+
+**解决方法：**
+1. 安装依赖 `vite-plugin-require-transform`, 并在 `vite.config.js/plugin` 中进行注册
+
+2. 安装依赖 `@types/node`， 并且在 `tsconfig.json/types` 中进行配置
+

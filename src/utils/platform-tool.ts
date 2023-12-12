@@ -101,6 +101,6 @@ export const isQuickappWebviewUnion =
 export const isQuickappWebviewHuawei =
   platform === EPlatform.QuickappWebviewHuawei;
 /** 是否开发环境 */
-export const isDevelopment = import.meta.env.MODE === 'development';
+export const isDevelopment = import.meta.env.MODE === 'dev';
 /** 是否线上环境 */
-export const isProduction = import.meta.env.MODE === 'production';
+export const isProduction = import.meta.env.MODE === 'prod';

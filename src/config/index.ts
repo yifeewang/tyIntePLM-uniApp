@@ -1,31 +1,27 @@
-const apiEnv: ApiEnv = 'dev';
+import type prod from "@/static/env/prod";
+const apiEnv = import.meta.env.MODE;
 
-const envMap = {
-    dev: {
-        baseUrl: 'http://120.46.143.122:7002',
-        apiBaseUrl: 'http://120.46.143.122:7002'
-    },
-    beta: {
-        baseUrl: 'http://120.46.143.122:7002',
-        apiBaseUrl: 'http://120.46.143.122:7002'
-    },
-    prod: {
-        baseUrl: 'http://120.46.143.122:7002',
-        apiBaseUrl: 'http://120.46.143.122:7002'
-    },
-    local: {
-        baseUrl: 'http://120.46.143.122:7002',
-        apiBaseUrl: 'http://120.46.143.122:7002'
-    }
+export function loadEnv<T>(mode: string): T {
+    let config;
+    const curConfigs: any = import.meta.glob(`../static/env/*.ts`, {eager: true}) || {};
+    Object.keys(curConfigs).forEach(key => {
+        let regxp = new RegExp(`${mode}.ts$`);
+        if(regxp.test(key)) {
+            config = curConfigs[key].default;
+        }
+    });
+    return config;
 };
 
-type ApiEnv = keyof typeof envMap;
+const envMap = loadEnv<typeof prod>(apiEnv);
+
+type ApiEnv = typeof apiEnv;
 type Env<T extends ApiEnv> = {
   apiEnv: T;
-} & (typeof envMap)[T];
+} & typeof envMap;
 
 function createEnv(apiEnv: ApiEnv): Env<typeof apiEnv> {
-    return Object.assign({ apiEnv }, envMap[apiEnv]);
+    return Object.assign({ apiEnv }, envMap);
 }
 
 const env = createEnv(apiEnv);

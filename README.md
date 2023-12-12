@@ -4,6 +4,8 @@
 
 `uni-app + vue3.x + vite + unocss + uni-ui` 项目工程化搭建，使用官方扩展ui库 `uni-ui`, 集成 `ESLint`、`Prettier`、`Stylelint`、`husky`、`lint-staged` 、`commitlint`等代码规范工具，集成了原子化css引擎 `unocss`, 并且使用 `pinia` 替代 `vuex`, 同时集成了 pinia 在 uniapp 中的持久化插件[pinia-plugin-persist-uni]以及 storeToRefs 增强插件[pinia-auto-refs]。
 
+[相关文章 - why unocss？](https://www.zhihu.com/question/588057410/answer/3075479109?utm_id=0)
+
 [相关文章 - pinia-plugin-persist-uni 在 uni-app 中持久化存储 pinia](https://juejin.cn/post/7081275565008748552)
 
 [相关文章 - 受够了手动 storeToRefs？来试试这个 vite 插件吧](https://juejin.cn/post/7097893752030625828)
@@ -11,7 +13,7 @@
 
 ## 所用技术栈
 
-- 依赖管理：node v16.x+, npm v8.x+, 如果使用 nvm，可以参考 [Github: nvm](https://github.com/nvm-sh/nvm#deeper-shell-integration) 来实现 node 版本的自动切换
+- 依赖管理：node v16.x+(建议：`v18.19.0`), npm v8.x+(建议：`v10.2.3`), 如果使用 `nvm`，可以参考 [Github: nvm](https://github.com/nvm-sh/nvm#deeper-shell-integration) 来实现 node 版本的自动切换
 - 小程序框架： [uni-app](https://uniapp.dcloud.io/)
 - 构建工具： [Vite](https://vitejs.dev/)
 - 前端框架： [Vue3.x](https://v3.cn.vuejs.org/)

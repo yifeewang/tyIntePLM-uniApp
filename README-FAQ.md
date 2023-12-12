@@ -9,6 +9,16 @@
 node版本 >= 16
 npm版本 >= 8
 yarn版本 >= 1.22
+
+## node 18+ 版本 mac M1编译报错问题
+
+**原因：**
+错误原因： 存在@esbuild/darwin-x64，但需要@esbuild/darwin-arm64
+
+**解决方法：**
+`package.json` 中添加 `"@esbuild/darwin-x64":"version"`,
+但是m1芯片不支持，所以就找到 `node_modules/@esbuild/darwin-x64`， 复制`darwin-x64`文件夹改名`darwin-arm64`
+
 ## tab，页面标题等 多语言无效
 
 配置i18n多语言后，标题和tabbar h5页面显示正常，小程序失效
@@ -23,6 +33,12 @@ page.json中多语言模板语法 `%index.title%`只针对h5生效， 小程序�
 
 ## 不清楚一些样式的unocss原子化写法
 
+**为什么使用unocss：**
+1. 公司代码中，css部分非常乱，重复定义的地方很多，又不方便一个个提出来归纳一下，导致压缩后的体积还是很大，要是用上了这样的css方案，会有很大的提升
+
+2. 防止为了赶时间和进度，直接乱命名而导致后期不方便维护阅读
+
+3. 调试和性能自己写会好很多，自己写多了还是很难避免重复样式
 **解决方法：**
 
 1. 大部分写法可以在 [unocss官网找到对应的语法](https://unocss.dev/interactive/)
@@ -70,6 +86,16 @@ ts 类型声明在带来类型提示，减少编程过程中 bug 率的同时，
 3. mac：复制接口url后，在vscode 使用 ctrl + option + x 即可
 2. win 使用 ctrl + alt + V 即可
 3. win 使用 ctrl + alt + V 即可
+
+## vue文件模板里面全局变量异味
+
+**解决方法：**
+找到   `shime-uni.d.ts` 文件，添加以下代码
+```js
+interface ComponentCustomProperties {
+    $t: any
+}
+```
 
 ## 如何生存 iconfont 文件
 https://juejin.cn/post/7079674057041395726?searchId=20231208141322519550C6B0CB5C8FFE8E

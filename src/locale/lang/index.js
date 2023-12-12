@@ -1,5 +1,5 @@
-import en from './en.js';
-import zh from './zh-Hans.js';
+import en from '@/static/lang/en.js';
+import zh from '@/static/lang/zh-Hans.js';
 
 export default {
     en,

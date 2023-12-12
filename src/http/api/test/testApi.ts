@@ -1,8 +1,9 @@
+import testUrl from './testUrl';
 import { getInstance } from '@/http/request';
 const apiTest = {
     getTest(data = {}, options = {}) {
         return getInstance.http({
-            url: '/test',
+            url: testUrl.getTest,
             method: 'GET',
             data,
             ...options
@@ -10,7 +11,7 @@ const apiTest = {
     },
     postTest(data = {}, options = {}) {
         return getInstance.http({
-            url: '/test',
+            url: testUrl.postTest,
             method: 'POST',
             data,
             ...options

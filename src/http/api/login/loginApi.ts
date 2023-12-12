@@ -1,8 +1,9 @@
+import loginUrl from './loginUrl';
 import { getInstance } from '@/http/request';
 const apiLogin = {
     goLogin(data = {}, options = {}) {
         return getInstance.http({
-            url: '/rest/userService/v1/user/userLogin',
+            url: loginUrl.goLogin,
             method: 'POST',
             data,
             ...options
